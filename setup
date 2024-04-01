@@ -33,7 +33,7 @@ install_config() {
     mkdir .config
     git clone https://github.com/vil/swayed.git
     cd swayed/
-    mv -r * ~/.config/
+    mv * ~/.config/
     cd ~/
     xdg-user-dirs-update
 }
