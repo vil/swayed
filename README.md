@@ -3,6 +3,8 @@
 
 The setup script install a fully configured base system for you with libreoffice, firefox, etc.
 
+![](img/2024-04-01-164316_sway-screenshot.png)
+
 ## Install
 Install a base Arch linux system using the `archinstall` script normally, and choose sway as your desktop template.
 
