@@ -45,7 +45,7 @@ install_oh_myzsh() {
 
 
 # ====== Main =======
-if [ $(lsb_release -i | cut -f 2-) = "Arch" ]; then
+if [ "$(lsb_release -i | cut -f 2-)" = "Arch" ]; then
     echo "Swayed setup script"
     echo
     echo "By Vili (https://vili.dev/)"
