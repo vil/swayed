@@ -24,7 +24,7 @@ install_yay() {
     cd ~/
 
     # Install rest from aur
-    yay -S --noconfirm gruvbox-material-gtk-theme-git swaylock-effects tofi sway-screenshot spotify vesktop
+    yay -S gruvbox-material-gtk-theme-git swaylock-effects tofi sway-screenshot spotify vesktop
 }
 
 # Install .configs
