@@ -1,0 +1,113 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "plain"
+[theme.overrides]
+separator = ""
+idle_bg = "#050505"
+idle_fg = "#e8dab2"
+good_bg = { link = "idle_bg" }
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = " $icon $barchart $utilization "
+format_alt = " $icon $frequency{ $boost|} "
+info_cpu = 20
+warning_cpu = 50
+critical_cpu = 90
+
+[[block]]
+block = "amd_gpu"
+format = " $icon $utilization "
+format_alt = " $icon MEM: $vram_used_percents ($vram_used/$vram_total) "
+interval = 1
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used_percents.eng(w:1) "
+format_alt = " $icon_swap $swap_free.eng(w:3,u:B,p:Mi)/$swap_total.eng(w:3,u:B,p:Mi)($swap_used_percents.eng(w:2)) "
+interval = 30
+warning_mem = 70
+critical_mem = 90
+
+[[block]]
+block = "custom"
+command = "echo /"
+
+[[block]]
+block = "bluetooth"
+mac = "your_mac"
+disconnected_format = ""
+format = " $icon "
+[block.battery_state]
+"0..20" = "critical"
+"21..70" = "warning"
+"71..100" = "good"
+
+[[block]]
+block = "net"
+format = " $icon {$signal_strength $ssid} "
+
+[[block]]
+block = "packages"
+signal = 1
+
+[[block]]
+block = "custom"
+command = "echo /"
+
+[[block]]
+block = "music"
+format = " $icon {$combo.str(max_w:20) $play $next |}"
+player = "spotify"
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "custom"
+command = "echo /"
+
+[[block]]
+block = "custom"
+command = "sed 's/  //' <(curl 'https://wttr.in/?format=%c+%t%20(%f)+%m' -s)"
+interval = 600
+[[block.click]]
+button = "left"
+cmd = "firefox 'https://wttr.in/'"
+
+[[block]]
+block = "time"
+interval = 1
+format = " $icon $timestamp.datetime(f:'%T') "
+[[block.click]]
+button = "left"
+cmd = "bash ~/.config/i3status/scripts/cal"
+
+[[block]]
+block = "menu"
+text = "\uf011 "
+[[block.items]]
+display = "-&gt;  Lock  &lt;-"
+cmd = "bash ~/.config/i3status/scripts/blur-lock"
+[[block.items]]
+display = " -&gt;   Sleep   &lt;-"
+cmd = "systemctl suspend"
+[[block.items]]
+display = " -&gt;  Hibernate  &lt;-"
+cmd = "systemctl hibernate"
+[[block.items]]
+display = " -&gt; Power Off &lt;-"
+cmd = "poweroff"
+confirm_msg = "Are you sure you want to power off?"
+[[block.items]]
+display = " -&gt;  Reboot   &lt;-"
+cmd = "reboot"
+confirm_msg = "Are you sure you want to reboot?"

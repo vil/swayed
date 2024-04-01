@@ -1,0 +1,85 @@
+#! /bin/bash
+# |----------------------------------|
+# | Copyright (c) 2024 Vili. GPL-3.0 |
+# |----------------------------------|
+
+
+# ===== funcs ======
+
+# Update the system
+sys_update() {
+    sudo pacman -Suyy --noconfirm
+}
+
+# Install needed software
+install() {
+    sudo pacman -S --noconfirm lxappearance firefox code libreoffice-fresh fastfetch nnn thunar zsh swayidle swayimg swaybg i3status-rust nvim eza mako alacritty git base-devel nerd-fonts
+}
+
+install_yay() {
+    cd /tmp/
+    git clone https://aur.archlinux.org/yay.git
+    cd yay/
+    makepkg -si
+    cd ~/
+
+    # Install rest from aur
+    yay -S --noconfirm gruvbox-material-gtk-theme-git swaylock-effects tofi sway-screenshot spotify
+}
+
+# Install .configs
+install_config() {
+    cd ~/
+    mkdir .config
+    git clone https://github.com/vil/swayed.git
+    cd swayed/
+    mv -r * ~/.config/
+}
+
+# Install oh-myzsh
+install_oh_myzsh() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+
+# ====== Main =======
+if [ $(command -v pacman &> /dev/null) ]; then
+    echo "Swayed setup script"
+    echo
+    echo "By Vili (https://vili.dev/)"
+    echo
+    echo
+    echo "Do you want to continue with this script? (y/N) "
+    read -r input
+    if [[ $input == "y" ||  $input == "Y" ]]; then
+        echo "Updating..."
+        sys_update
+        echo
+        echo "Done!"
+        echo
+        echo "Installing needed software..."
+        install
+        echo
+        echo "Installing rest of the needed software from aur"
+        install_yay
+        echo
+        echo "Done!"
+        echo
+        echo "Installing swayed config..."
+        install_config
+        echo
+        echo "Done!"
+        echo
+        echo "Installing oh-my-zsh..."
+        install_oh_myzsh
+        echo
+        echo "Done!"
+        echo
+        echo "You may do your post-ricing steps now! For example change the layout in ~/.config/sway/config.d/input.conf"
+        echo "Also you may quickly open the Sway config file by pressing MOD+Shift+F1 , learn the keybindings, etc. from there."
+    else
+        echo "Exiting..."
+    fi
+else
+    echo "Not an Arch based distro :("
+fi
