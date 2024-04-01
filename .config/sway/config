@@ -27,7 +27,6 @@ bindsym $mod+Shift+r exec $explorer
 bindsym $mod+Shift+f1 exec $editor ~/.config/sway/config
 bindsym $mod+Shift+f2 exec $term -e htop
 bindsym $mod+Shift+f3 exec $editor
-bindsyn $mod+Shift+f4 exec vesktop
 bindsym $mod+d exec $menu
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
