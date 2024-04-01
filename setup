@@ -45,7 +45,7 @@ install_oh_myzsh() {
 
 
 # ====== Main =======
-if [ $(command -v pacman &> /dev/null) ]; then
+if command -v pacman &> /dev/null; then
     echo "Swayed setup script"
     echo
     echo "By Vili (https://vili.dev/)"
