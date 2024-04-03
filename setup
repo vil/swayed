@@ -13,7 +13,7 @@ sys_update() {
 
 # Install needed software
 install() {
-    sudo pacman -S --noconfirm lxappearance xdg-user-dirs firefox code libreoffice-fresh fastfetch nnn thunar zsh swayidle swayimg swaybg i3status-rust neovim eza mako alacritty git base-devel nerd-fonts
+    sudo pacman -S --noconfirm lsb-release lxappearance xdg-user-dirs firefox code libreoffice-fresh fastfetch nnn thunar zsh swayidle swayimg swaybg i3status-rust neovim eza mako alacritty git base-devel nerd-fonts
 }
 
 install_yay() {
